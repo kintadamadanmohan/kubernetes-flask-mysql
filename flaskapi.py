@@ -1,6 +1,6 @@
 """Code for a flask API to Create, Read, Update, Delete users"""
 import os
-from flask import jsonify, request, Flask
+from flask import jsonify, request, Flask, render_template
 from flaskext.mysql import MySQL
 
 app = Flask(__name__)
@@ -39,7 +39,9 @@ def index():
     except Exception as exception:
         return jsonify(str(exception))
 
-
+@app.route("/createUser")
+def createUser():
+    return render_template('/userCreate.html')
 @app.route("/create", methods=["POST"])
 def add_user():
     """Function to create a user to the MySQL database"""
